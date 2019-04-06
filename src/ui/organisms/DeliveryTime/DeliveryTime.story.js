@@ -14,7 +14,7 @@ storiesOf('ui/organisms', module).add(
       error={select(
         'error',
         {
-          invalid: 'Поле заполнено неверно',
+          invalid: 'Укажите время доставки',
           none: null,
         },
         null,
@@ -22,7 +22,7 @@ storiesOf('ui/organisms', module).add(
       tip={select(
         'tip',
         {
-          tip: 'Номер без в формате 9XXXXXXXXX',
+          tip: 'Когда привезти вкусную пиццу',
           none: null,
         },
         null,

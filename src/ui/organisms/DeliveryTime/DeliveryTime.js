@@ -25,7 +25,7 @@ const DeliveryTimeDelimiter = styled.div`
 `
 
 export const DeliveryTime = ({
-  label, valid, error, tip, onTimeSet
+  label, valid, error, tip, onTimeSet, disabled
 }) => {
 
   const [from, setFrom] = useState('')
@@ -40,14 +40,17 @@ export const DeliveryTime = ({
       }
   }
 
-  const validateTime= (str)=>{
-
-    let t = str.split( ":" );
+  const validateTime = (str)=>{
+    let res = true
+    let t = str.split( ":" )
     if ( +t[0] > 24 || +t[1] > 60 ) {
-      return false
-    }else{
-      return true
+      res = false
     }
+    if (str.length<4){
+      res = false
+    }
+
+    return res
   }
 
   const onFromChange = (e)=>{
@@ -72,11 +75,14 @@ export const DeliveryTime = ({
   }
 
   const onInputBlurHandlerFrom = (e)=>{
+    let hasError = false
     if(!validateTime(e.currentTarget.value)){
       setTillDisabled(true)
+      setFromErr('Некорректное время')
     }else{
       setFromErr('')
       setTillDisabled(false)
+      setFromErr('')
     }
   }
 
@@ -93,6 +99,18 @@ export const DeliveryTime = ({
     }
 
     hasError ? setTillErr('Некорректное время') : setTillErr('')
+
+    if(!hasError){
+      timeSetMakeResult();
+    }
+  }
+
+  const timeSetMakeResult = (e)=>{
+    let res = {
+      from: from,
+      till: till
+    }
+    onTimeSet(res)
   }
 
   return (
@@ -107,6 +125,7 @@ export const DeliveryTime = ({
             onBlur={onInputBlurHandlerFrom}
             value={from}
             error={fromErr}
+            disabled={disabled}
           />
         </FieldItem>
         <VBox width={theme.paddings.half}/>
