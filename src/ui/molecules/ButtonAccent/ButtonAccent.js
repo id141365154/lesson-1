@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { theme, styled } from '@ui/theme'
 import { ButtonText } from '@ui/atoms/Typography'
+import { Loader } from '@ui/molecules'
 
 const Button = styled('div')`
   background: ${({ loading, theme }) =>
@@ -28,7 +29,7 @@ export const ButtonAccent = ({ loading, disabled, children, onPress }) => (
     onClick={loading || disabled ? () => undefined : onPress}
   >
     {loading ? (
-      'load'
+      <Loader color={'white'} />
     ) : (
       <ButtonText
         color={disabled ? theme.pallete.lightGray : theme.pallete.nero}

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 
 import { HBox, VBox, IconLoader, IconSuccess } from '@ui/atoms'
 import { InputError, InputTip } from '@ui/atoms/Typography'
-import { FormLabel, FormAdornment } from '@ui/molecules'
+import { FormLabel, FormAdornment} from '@ui/molecules'
 import { styled, theme } from '@ui/theme'
 
 const Container = styled.div`
-  height: 88px;
+  
   display: flex;
   flex-direction: column;
 `
@@ -19,8 +19,7 @@ const FieldContainer = styled.div`
   flex-direction: row;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.pallete.darkWhite};
-  height: 40px;
-  min-height: 40px;
+  height: 100px;
   border: 1px
     ${({ error, theme, focused }) =>
       error
@@ -31,24 +30,28 @@ const FieldContainer = styled.div`
     solid;
 `
 
-const StyledInput = styled.input`
+const StyledInput = styled.textarea`
   border: none;
   background-color: transparent;
-  height: 40px;
+  min-height:100px;
+  max-height:100px;
+  max-width:100%;
+  height:100px;
   flex: 1;
   line-height: 18px;
   font-family: Montserrat;
   font-size: 16px;
+  padding: ${theme.paddings.main}px;
   outline: none;
   color: ${({ theme, disabled }) =>
     disabled ? theme.pallete.lightGray : theme.pallete.nero};
   ::placeholder {
     color: ${({ theme }) => theme.pallete.lightGray};
-    line-height: 44px;
+    line-height: 18px;
   }
 `
 
-export const TextField = ({
+export const TextareaField = ({
   startAdornment,
   status,
   disabled,
@@ -88,12 +91,8 @@ export const TextField = ({
           </div>
           : null
       }
+
       <FieldContainer focused={focused} error={error}>
-        {startAdornment ? (
-          <FormAdornment>{startAdornment}</FormAdornment>
-        ) : (
-          <VBox />
-        )}
         <StyledInput
           placeholder={placeholder ? placeholder : ''}
           disabled={disabled}
@@ -102,10 +101,6 @@ export const TextField = ({
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
-        <FormAdornment>
-          {status === 'loading' ? <IconLoader /> : null}
-          {status === 'success' ? <IconSuccess /> : null}
-        </FormAdornment>
       </FieldContainer>
       <HBox height={theme.paddings.half} />
       {error ? <InputError>{error}</InputError> : <InputTip>{tip}</InputTip>}
@@ -113,8 +108,7 @@ export const TextField = ({
   )
 }
 
-TextField.propTypes = {
-  status: PropTypes.oneOf(['loading', 'success']),
+TextareaField.propTypes = {
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
   label: PropTypes.string,
@@ -122,8 +116,6 @@ TextField.propTypes = {
   value: PropTypes.string.isRequired,
   tip: PropTypes.string,
   valid: PropTypes.bool,
-  startAdornment: PropTypes.node,
-
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,

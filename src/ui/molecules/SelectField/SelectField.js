@@ -106,12 +106,20 @@ export const SelectField = ({
   }
   return (
     <Container>
-      {!error
-        ? <FormLabel valid={valid}>{label}</FormLabel>
-        :<FormLabel valid={null}>{label}</FormLabel>
+      {
+        label
+          ? <div>
+            {!error
+              ? <FormLabel valid={valid}>{label}</FormLabel>
+              :<FormLabel valid={null}>{label}</FormLabel>
+            }
+            <HBox height={theme.paddings.half} />
+            </div>
+          : null
       }
 
-      <HBox height={theme.paddings.half} />
+
+
       <FieldContainer focused={focused} error={error} disabled={disabled}>
         {startAdornment ? (
           <FormAdornment>{startAdornment}</FormAdornment>
