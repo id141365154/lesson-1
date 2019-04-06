@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import { styled, theme, keyframesList } from '@ui/theme'
 import {IconLoader} from '@ui/atoms'
 
-console.log('keyfrmaes',keyframesList)
-
 const Container = styled.div`
   width:18px;
   height: 18px;
@@ -13,7 +11,6 @@ const Container = styled.div`
 `
 
 export const Loader = ({ loading, color }) => {
-  console.log('color', color)
   let colorDic = {
     pink: theme.pallete.radicalRed,
     black: theme.pallete.nero,
@@ -23,7 +20,7 @@ export const Loader = ({ loading, color }) => {
     loading ? (
     <Container>
       <IconLoader
-        color={colorDic[color]}
+        color={ typeof color === 'string' ? colorDic[color] : colorDic.pink}
       ></IconLoader>
     </Container>) : null
   )
@@ -33,8 +30,3 @@ Loader.propTypes = {
   loading: PropTypes.bool,
   color: PropTypes.oneOf(['pink', 'black','white']),
 }
-
-/*
-Loader.defaultProps = {
-  valid: false,
-}*/
