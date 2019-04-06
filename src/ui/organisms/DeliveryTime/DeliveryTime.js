@@ -138,7 +138,7 @@ export const DeliveryTime = ({
             onBlur={onInputBlurHandlerTill}
             value={till}
             error={tillErr}
-            disabled={tillDisabled}
+            disabled={ disabled ? disabled : tillDisabled}
           />
         </FieldItem>
       </DeliveryTimeField>
