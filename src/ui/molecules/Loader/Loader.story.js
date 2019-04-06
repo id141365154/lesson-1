@@ -7,8 +7,13 @@ import { Loader } from './Loader'
 storiesOf('ui/molecules', module).add('Loader', () => (
   <Loader
     loading={select('loading', {
-      "Loading": true,
-      "Hidden" : false
+      "Y": true,
+      "N" : false
     }, true)}
+    color={select('color', {
+      "Pink": 'pink',
+      "Black": 'black',
+      "White": 'white',
+    }, 'pink')}
   />
 ))
