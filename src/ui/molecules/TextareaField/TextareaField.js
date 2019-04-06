@@ -102,8 +102,21 @@ export const TextareaField = ({
           onBlur={handleBlur}
         />
       </FieldContainer>
-      <HBox height={theme.paddings.half} />
-      {error ? <InputError>{error}</InputError> : <InputTip>{tip}</InputTip>}
+      {error
+        ?<>
+          <HBox height={theme.paddings.half} />
+          <InputError>{error}</InputError>
+        </>
+        :<>
+          {tip
+            ? <>
+              <HBox height={theme.paddings.half} />
+              <InputTip>{tip}</InputTip>
+            </>
+            :null
+          }
+        </>
+      }
     </Container>
   )
 }

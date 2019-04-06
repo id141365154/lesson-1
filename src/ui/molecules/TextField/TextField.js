@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 
 import { HBox, VBox, IconLoader, IconSuccess } from '@ui/atoms'
 import { InputError, InputTip } from '@ui/atoms/Typography'
-import { FormLabel, FormAdornment } from '@ui/molecules'
+import { FormLabel, FormAdornment, Loader } from '@ui/molecules'
 import { styled, theme } from '@ui/theme'
 
+
 const Container = styled.div`
-  height: 88px;
   display: flex;
   flex-direction: column;
 `
@@ -19,8 +19,6 @@ const FieldContainer = styled.div`
   flex-direction: row;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.pallete.darkWhite};
-  height: 40px;
-  min-height: 40px;
   border: 1px
     ${({ error, theme, focused }) =>
       error
@@ -35,7 +33,7 @@ const StyledInput = styled.input`
   border: none;
   background-color: transparent;
   height: 40px;
-  flex: 1;
+  width:100%;
   line-height: 18px;
   font-family: Montserrat;
   font-size: 16px;
@@ -81,10 +79,15 @@ export const TextField = ({
         label
           ? <div>
             {!error
-              ? <FormLabel valid={valid}>{label}</FormLabel>
-              :<FormLabel valid={null}>{label}</FormLabel>
+              ? <>
+                  <FormLabel valid={valid}>{label}</FormLabel>
+                  <HBox height={theme.paddings.half} />
+                </>
+              :<>
+                  <FormLabel valid={null}>{label}</FormLabel>
+                  <HBox height={theme.paddings.half} />
+               </>
             }
-            <HBox height={theme.paddings.half} />
           </div>
           : null
       }
@@ -102,13 +105,31 @@ export const TextField = ({
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
-        <FormAdornment>
-          {status === 'loading' ? <IconLoader /> : null}
-          {status === 'success' ? <IconSuccess /> : null}
-        </FormAdornment>
+        {status
+          ?<FormAdornment>
+            {status === 'loading' ? <Loader /> : null}
+            {status === 'success' ? <IconSuccess /> : null}
+          </FormAdornment>
+          : <VBox />
+        }
+
       </FieldContainer>
-      <HBox height={theme.paddings.half} />
-      {error ? <InputError>{error}</InputError> : <InputTip>{tip}</InputTip>}
+
+      {error
+        ?<>
+            <HBox height={theme.paddings.half} />
+            <InputError>{error}</InputError>
+         </>
+        :<>
+          {tip
+          ? <>
+              <HBox height={theme.paddings.half} />
+              <InputTip>{tip}</InputTip>
+            </>
+            :null
+          }
+         </>
+      }
     </Container>
   )
 }

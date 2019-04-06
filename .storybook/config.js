@@ -18,7 +18,7 @@ const StoryBookContainer = styled.div`
 const InnerContainer = styled.div`
   background-color: white;
   flex: 1;
-  max-width: 414px;
+  max-width: 320px;
 `
 
 function loadStories() {
