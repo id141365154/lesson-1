@@ -17,16 +17,14 @@ export const Loader = ({ loading, color }) => {
     white: theme.pallete.white
   }
   return (
-    loading ? (
     <Container>
       <IconLoader
         color={ typeof color === 'string' ? colorDic[color] : colorDic.pink}
       ></IconLoader>
-    </Container>) : null
+    </Container>
   )
 }
 
 Loader.propTypes = {
-  loading: PropTypes.bool,
   color: PropTypes.oneOf(['pink', 'black','white']),
 }
