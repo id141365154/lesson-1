@@ -8,5 +8,15 @@ export const keyframesList = {
               to {
                 transform:rotateZ(359deg)
               }
+            `,
+  'msg_appearance':keyframes`
+              from {
+                opacity:0;
+                transform:translateY(15px);
+              }
+              to {
+                opacity:1;
+                transform:translateY(0);
+              }
             `
 }

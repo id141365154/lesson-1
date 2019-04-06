@@ -8,6 +8,7 @@ export const theme = {
     white: '#ffffff',
     darkWhite: '#F4F4F4',
     errorColor: '#E50202',
+    successColor: '#27AE60',
     lola: '#BAB3C0',
     divider: '#E6E4E8',
   },
