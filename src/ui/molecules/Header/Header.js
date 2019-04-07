@@ -9,7 +9,7 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 48px;
+  height: 46px;
 `
 
 const IconContainer = styled.div`

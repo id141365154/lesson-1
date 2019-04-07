@@ -48,6 +48,7 @@ const StyledInput = styled.input`
 
 export const TextField = ({
   startAdornment,
+  endAdornment,
   status,
   disabled,
   placeholder,
@@ -56,6 +57,7 @@ export const TextField = ({
   value,
   tip,
   valid,
+  type,
   onChange,
   onBlur,
   onFocus,
@@ -104,13 +106,18 @@ export const TextField = ({
           onChange={e => onChange(e.currentTarget.value)}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          type={type ? type : 'text'}
         />
         {status
           ?<FormAdornment>
+
             {status === 'loading' ? <Loader /> : null}
             {status === 'success' ? <IconSuccess /> : null}
           </FormAdornment>
-          : <VBox />
+          : endAdornment
+            ? <FormAdornment>{endAdornment}</FormAdornment>
+            : <VBox />
+
         }
 
       </FieldContainer>
@@ -122,13 +129,14 @@ export const TextField = ({
          </>
         :<>
           {tip
-          ? <>
-              <HBox height={theme.paddings.half} />
+            ? <>
+              <HBox height={theme.paddings.half}/>
               <InputTip>{tip}</InputTip>
             </>
-            :null
+            : null
           }
          </>
+        ?<HBox height={theme.paddings.double} />: null
       }
     </Container>
   )
@@ -144,6 +152,8 @@ TextField.propTypes = {
   tip: PropTypes.string,
   valid: PropTypes.bool,
   startAdornment: PropTypes.node,
+  endAdornment: PropTypes.node,
+  type: PropTypes.oneOf(['text','email','tel']),
 
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,

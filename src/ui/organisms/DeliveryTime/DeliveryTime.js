@@ -78,7 +78,7 @@ export const DeliveryTime = ({
     let hasError = false
     if(!validateTime(e.currentTarget.value)){
       setTillDisabled(true)
-      setFromErr('Некорректное время')
+      setFromErr('Некорректно')
     }else{
       setFromErr('')
       setTillDisabled(false)
@@ -98,7 +98,7 @@ export const DeliveryTime = ({
       hasError = true
     }
 
-    hasError ? setTillErr('Некорректное время') : setTillErr('')
+    hasError ? setTillErr('Некорректно') : setTillErr('')
 
     if(!hasError){
       timeSetMakeResult();

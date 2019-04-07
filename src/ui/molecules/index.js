@@ -1,4 +1,5 @@
 export { ButtonAccent } from './ButtonAccent/ButtonAccent'
+export { ButtonColor } from './ButtonColor/ButtonColor'
 export { FormLabel } from './FormLabel/FormLabel'
 export { Header } from './Header/Header'
 export { TextField } from './TextField/TextField'
