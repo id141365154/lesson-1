@@ -4,6 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs'
 import { Normalize } from 'styled-normalize'
 
 import { theme, GlobalStyles, styled, ThemeProvider } from '@ui/theme'
+import { withInfo } from '@storybook/addon-info'
 
 const req = require.context('../src', true, /.story.js$/)
 
@@ -23,6 +24,7 @@ const InnerContainer = styled.div`
 `
 
 function loadStories() {
+  addDecorator(withInfo)
   addDecorator(withKnobs())
   addDecorator(story => (
     <StoryBookContainer>
@@ -39,5 +41,4 @@ function loadStories() {
   ))
   req.keys().forEach(req)
 }
-
 configure(loadStories, module)
