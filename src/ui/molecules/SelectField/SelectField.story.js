@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { SelectField, TextField } from './SelectField'
+import { SelectField } from './SelectField'
 import { boolean, select, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { withState } from '@dump247/storybook-state'

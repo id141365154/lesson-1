@@ -12,5 +12,14 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: normal;
     color: ${props => props.theme.pallete.gray2};
   }
+  
+  button{
+    background:none;
+    padding:0;
+    margin:0;
+    outline:none;
+    border:none;
+  }
+  
 
 `
