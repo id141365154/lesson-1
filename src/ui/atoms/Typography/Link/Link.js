@@ -1,17 +1,25 @@
+import React from 'react'
 import { styled } from '@ui/theme'
+import PropTypes from 'prop-types'
+import { CheckboxWithText } from '../../../molecules'
 
 const _Link = styled.a`
-  color: ${({ theme }) => theme.pallete.lightGray};
-  font-size: 12px;
-  line-height: 14px;
+  color: ${({ theme }) => theme.pallete.radicalRed};
+  font-size: 14px;
+  text-decoration:none;
 `
 
-export const Link = ({href}) => {
-
+export const Link = ({href, text}) => {
 
   return (
     <_Link
       href={href}
-    ></_Link>
+    >{text}</_Link>
   )
+}
+
+
+Link.propTypes = {
+  text: PropTypes.string.isRequired,
+  href: PropTypes.string.isRequired
 }
